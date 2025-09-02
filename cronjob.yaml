@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: helloworld-cronjob
+spec:
+  schedule: "*/1 * * * *" 
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: helloworld-cron-container
+            image: helloworld-app:1.0 # 
+            imagePullPolicy: Never
+            command: ["echo"]
+            args: ["CronJob ran successfully!"] #just a simple cronjob to demonstrate ability
+          restartPolicy: OnFailure
